@@ -1,62 +1,82 @@
-let numberA = 0;
-let numberB = 0;
+let input = "";
+let number = 0;
+let tempNumber = 0;
+let ArrNumb = [];
 let operator = "";
 
-function add(numberA,numberB) {
-    return numberA + numberB
+let display1 = document.getElementById("story");
+let display2 = document.getElementById("numbdisp");
+
+function dispDel(){
+
+  display1.innerText = " ";
+  display2.innerText = " ";
+  
 };
 
-function subtract(numberA,numberB) {
-    return numberA - numberB
+function display(input){
+  //console.log(input)
+  display1.innerText = input;
+}; 
+
+
+function calculator(){
+  switch(this.value){
+    case "+":
+      break;
+    case "-":
+      break;
+    case "✕":
+      break;
+    case "÷":
+      break;
+    case "±":
+      break;
+    default:
+      break;
+  }
 };
 
-function multiple(numberA,numberB) {
-    return numberA*numberB
-};
 
-function divide(numberA,numberB) {
-    return numberA/numberB
-};
+function validate(){
 
-function clear() {
-
-};
-
-function valInput() {
-
-};
-
-function comma() {
+  switch (this.className) {
     
+    case "number":
+      if (number!=""){
+        ArrNumb.push(this.value);
+        number = ArrNumb.join("");
+        display(number);
+      } else {
+        tempNumber = number;
+        number = 0;
+        ArrNumb = [];
+        ArrNumb.push(this.value);
+        number = ArrNumb.join("");
+        display(number);
+      };
+      break;
+
+    case "operator":
+        display(this.value);
+        calculator(this.value);
+      break;
+
+    case "delete":
+     
+      dispDel;
+      break;
+    
+    default:
+
+      break;
+  }
 };
 
-function calculate() {
-
-}
 
 
-
-/* document.addEventListener("click", (event) => {
-    if (event.target.matches("button")){
-        console.log(event.target.value);
-    }
-  });  */
-document.addEventListener("click",(event) =>{
-    if (document.getElementsByClassName('number')){
-        numberA = event.target.value
-    }
-    if (document.getElementsByClassName('operator')){
-        console.log(event.target.id)
-    }   
-});
-
-document.getElementById("btnAdd").addEventListener("click", add);
-document.getElementById("btnSub").addEventListener("click", subtract);
-document.getElementById("btnMul").addEventListener("click", multiple);
-document.getElementById("btnDiv").addEventListener("click", divide);
-
-document.getElementById("btnClr").addEventListener("click", clear);
-document.getElementById("btnCom").addEventListener("click", comma);
-document.getElementById("btnEnt").addEventListener("click", calculate);
-
-
+let clsButton = document.getElementsByTagName('button');
+ 
+  for (var i = 0; i < clsButton.length; i++) {
+    clsButton[i].addEventListener('click', validate, false);
+  }

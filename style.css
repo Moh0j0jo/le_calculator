@@ -6,6 +6,7 @@
     height: 450px;
     background: rgb(77, 75, 75);
     border: 5px;
+    border-radius: 3%;
 }
 
 .grid{
@@ -60,4 +61,13 @@ body{
     display: flex;
     justify-content:center;
     background: rgb(0, 0, 0);
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
 }

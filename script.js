@@ -12,26 +12,29 @@ let clsButton = document.getElementsByTagName('button');
 
 function numbers(value) {
 
-  if(!number){
+  if(!operator){
     number = firstOP(value);
     display1.innerText = number;
-  } if (!tempNumb){
+  } else if (operator){
     tempNumb = secondOP(value);
     display1.innerText = tempNumb;
-  } else{
+  } else if (!operator && tempNumb){
     tempNumb = "";
     ArrTemp = [] ; 
     tempNumb = secondOP(value);
     display1.innerText = tempNumb;
   };
-
+  
 };
+  
 
 function operators(value){
   if(!operator){
     operator = value;
   }else{
-    calculate()
+    calculate();
+    operator = value;
+    ArrTemp = [];
     number  = solution;
     display2.innerText = number;
   };
@@ -66,16 +69,23 @@ function divide(){
 }
 
 function reset() {
-  number = "";
-  tempNumb = "";
-  ArrNumb = [];
-  ArrTemp = [];
+  clear();
   operator = "";
   solution = "";
-  display1.innerText = "0"
-  display2.innerText = "0"
+  display1.innerText = "0";
+  display2.innerText = "0";
 };
 
+function clear(){
+  if(tempNumb){
+    tempNumb = "";
+    ArrTemp = [];
+  }
+  if(number){
+    number = "";
+    ArrNumb = [];
+  }
+};
 
 function calculate() {
   switch (operator) {
@@ -91,6 +101,8 @@ function calculate() {
     case "-":
       solution = subtract();
       break;
+    case "C":
+      clear();
     default:
       break;
   }
@@ -129,3 +141,5 @@ function validate() {
 for (var i = 0; i < clsButton.length; i++) {
   clsButton[i].addEventListener('click', validate, false);
 }
+
+

@@ -11,22 +11,7 @@ let display2 = document.getElementById("numbdisp");
 let clsButton = document.getElementsByTagName('button');
 
 function numbers(value) {
-/*   if (!tempNumb) {
-    if (!operator) {
-      number = firstOP(value);
-      display1.innerText = number;
-    } else {
-      tempNumb = secondOP(value);
-      display1.innerText = tempNumb;
-    }
-  } else {
-    number = calculate()
-    display2.innerText = number;
-    reset();
-    tempNumb = secondOP(value);
-    display1.innerText = tempNumb;
-  };
- */
+
   if(!number){
     number = firstOP(value);
     display1.innerText = number;
@@ -87,6 +72,8 @@ function reset() {
   ArrTemp = [];
   operator = "";
   solution = "";
+  display1.innerText = "0"
+  display2.innerText = "0"
 };
 
 
@@ -94,12 +81,16 @@ function calculate() {
   switch (operator) {
     case "+":
       solution = add();
-
       break;
     case "✕":
       solution = multiple();
       break;
-
+    case "÷":
+      solution = divide();
+      break;
+    case "-":
+      solution = subtract();
+      break;
     default:
       break;
   }
@@ -120,7 +111,7 @@ function validate() {
       break;
 
     case "delete":
-
+        reset();
       break;
 
     case "calculate":

@@ -10,23 +10,33 @@ let display1 = document.getElementById("story");
 let display2 = document.getElementById("numbdisp");
 let clsButton = document.getElementsByTagName('button');
 
+function clear(){
+  if(tempNumb){
+    tempNumb = "";
+    ArrTemp = [];
+  }
+  if(number){
+    number = "";
+    ArrNumb = [];
+  }
+};
+
 function numbers(value) {
 
   if(!operator){
+    clear();
     number = firstOP(value);
     display1.innerText = number;
   } else if (operator){
     tempNumb = secondOP(value);
     display1.innerText = tempNumb;
   } else if (!operator && tempNumb){
-    tempNumb = "";
-    ArrTemp = [] ; 
     tempNumb = secondOP(value);
     display1.innerText = tempNumb;
   };
   
 };
-  
+
 
 function operators(value){
   if(!operator){
@@ -35,8 +45,8 @@ function operators(value){
     calculate();
     operator = value;
     ArrTemp = [];
-    number  = solution;
-    display2.innerText = number;
+    number = solution;
+    display2.innerText = solution; 
   };
   
 };
@@ -50,6 +60,7 @@ function secondOP(value) {
   ArrTemp.push(value);
   return ArrTemp.join("");
 };
+
 
 
 function add() {
@@ -76,16 +87,6 @@ function reset() {
   display2.innerText = "0";
 };
 
-function clear(){
-  if(tempNumb){
-    tempNumb = "";
-    ArrTemp = [];
-  }
-  if(number){
-    number = "";
-    ArrNumb = [];
-  }
-};
 
 function calculate() {
   switch (operator) {
@@ -107,6 +108,8 @@ function calculate() {
       break;
   }
   display2.innerText = solution;
+  ArrNumb = [];
+  ArrTemp = [];
 };
 
 function validate() {
